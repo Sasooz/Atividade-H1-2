@@ -2,11 +2,14 @@
 
 namespace Atividade_H1_2.Classes;
 
-public class CalcularFrete: CalculoFrete
+public class CalcularFrete: Frete
 {
-    
+    public string GetNomeProduto()
+    {
+        return NomeProduto;
+    }
 
-    public double CalculoFrete(CalculoFrete frete)
+    public double CalculoFrete(Frete frete, string nomeProduto)
     {
         int TaxaEstado;
         if (frete.UF == "SP")
@@ -26,7 +29,10 @@ public class CalcularFrete: CalculoFrete
         var VolumeProduto = frete.AlturaProduto * frete.LarguraProduto * frete.ComprimentoProduto;
         frete.ValorFrete = VolumeProduto * 0.02 + TaxaEstado;
 
-        return frete.ValorFrete;
+
+       return frete.ValorFrete;
+
     }
+    
 }
 

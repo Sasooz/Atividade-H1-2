@@ -9,11 +9,24 @@ public class FreteController : ControllerBase
 {
   
     [HttpPost]
-    public IActionResult CalcularFreteTodo(CalculoFrete frete)
+    public IActionResult CalcularFreteTodo(Frete frete)
     {
         CalcularFrete _calcularFrete = new CalcularFrete();
-        var resultado = _calcularFrete.CalculoFrete(frete);
+        var resultado = _calcularFrete.CalculoFrete(frete, _calcularFrete.GetNomeProduto());
 
-        return Ok(resultado);
+        var Frete = new Frete
+        {
+            NomeProduto = frete.NomeProduto,
+            PesoProduto = frete.PesoProduto,
+            UF = frete.UF,
+            AlturaProduto = frete.AlturaProduto,
+            LarguraProduto = frete.LarguraProduto,
+            ComprimentoProduto = frete.ComprimentoProduto,
+            ValorFrete = frete.ValorFrete,
+            
+        };
+
+
+        return Ok(Frete);
     }
 }

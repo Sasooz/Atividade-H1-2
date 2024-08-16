@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Atividade_H1_2.Classes;
 
-public class CalculoFrete
+public class Frete
 {
     public string NomeProduto { get; set; }
     public float PesoProduto { get; set; }
