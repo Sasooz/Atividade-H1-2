@@ -2,36 +2,40 @@
 
 namespace Atividade_H1_2.Classes;
 
-public class CalcularFrete: Frete
+public class CalcularFrete
 {
-    public string GetNomeProduto()
+    public Frete CalculoFrete(Produto produto, string UF)
     {
-        return NomeProduto;
+        int TaxaEstado = VerificaTaxaEstado(UF);
+
+        double VolumeProduto = produto.Altura * produto.Largura * produto.Comprimento;
+
+        double ValorFrete = VolumeProduto * 0.02 + TaxaEstado;
+
+        return new Frete
+        {
+            UF = UF,
+            ValorFrete = Math.Round(ValorFrete, 2),
+        };
+
     }
 
-    public double CalculoFrete(Frete frete, string nomeProduto)
+
+    public int VerificaTaxaEstado(string UF )
     {
-        int TaxaEstado;
-        if (frete.UF == "SP")
+        if (UF == "SP")
         {
-            TaxaEstado = 50;
+            return  50;
         }
-        else if (frete.UF == "RJ")
+        else if (UF == "RJ")
         {
-            TaxaEstado = 60;
+            return  60;
         }
-        else if (frete.UF == "MG")
+        else if (UF == "MG")
         {
-            TaxaEstado = 55;
+            return 55;
         }
-        else TaxaEstado = 70;
-
-        var VolumeProduto = frete.AlturaProduto * frete.LarguraProduto * frete.ComprimentoProduto;
-        frete.ValorFrete = VolumeProduto * 0.02 + TaxaEstado;
-
-
-       return frete.ValorFrete;
-
+        else return 70;
     }
     
 }
